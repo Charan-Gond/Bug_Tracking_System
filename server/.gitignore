@@ -5,5 +5,4 @@
 ./bugTrackingsystem/mvnw
 ./bugTrackingsystem/mvnw.cmd
 
-./bugTrackingsystem/src/test
-
+./bugTrackingsystem/src/test/java/com/tracker
