@@ -1,8 +1,14 @@
 
+.idea
 
+./bugTrackingsystem/.idea
 
 ./bugTrackingsystem/.mvn
 ./bugTrackingsystem/mvnw
 ./bugTrackingsystem/mvnw.cmd
 
 ./bugTrackingsystem/src/test/java/com/tracker
+
+./bugTrackingsystem/src/main/resources/.env
+
+./bugTrackingsystem/target
