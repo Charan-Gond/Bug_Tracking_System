@@ -12,3 +12,4 @@
 ./bugTrackingsystem/src/main/resources/.env
 
 ./bugTrackingsystem/target
+./bugTrackingsystem/src/test
