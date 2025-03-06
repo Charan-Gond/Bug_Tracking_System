@@ -1,0 +1,33 @@
+package com.tracker.model;
+
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.sql.Date;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class Attachments {
+
+    @Id
+    private int id;
+
+    @Column(name="bug_id")
+    private int bugId;
+
+    @Column(name="user_id")
+    private int userId;
+
+    @Column(name="file_path")
+    private String filePath;
+
+    @Column(name = "created_at")
+    private Date createdAt;
+}
