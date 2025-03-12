@@ -73,6 +73,7 @@ import java.util.Optional;
         }
 
         public User findByUsername(String s) {
+
             return repo.findByName(s);
         }
     }

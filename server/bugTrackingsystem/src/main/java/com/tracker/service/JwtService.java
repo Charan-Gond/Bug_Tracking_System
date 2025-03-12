@@ -23,6 +23,7 @@ public class JwtService {
 
     public String getTocken(User u){
         Map<String,String> x= new HashMap<>();
+        x.put("role",u.getRole().toString());
         return Jwts.builder()
                 .claims(x)
                 .setSubject(u.getName())
