@@ -1,5 +1,6 @@
 package com.tracker.model;
 
+import com.tracker.domain.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,10 +18,9 @@ public class UserPrinciple implements UserDetails {
 
     private final User user;
 
-    private List<String> roles=new ArrayList<>();
+    private final List<String> roles=new ArrayList<>();
 
     public UserPrinciple(User u) {
-//        System.out.println("constructor");
         user = u;
 
        roles.addAll( List.of("DEVELOPER","ADMIN","TESTER","MANAGER"));
@@ -43,4 +43,10 @@ public class UserPrinciple implements UserDetails {
     public String getUsername() {
         return user.getName();
     }
+
+    public int getId(){
+        return user.getId();
+    }
+
+    public Role getRole(){return user.getRole();}
 }

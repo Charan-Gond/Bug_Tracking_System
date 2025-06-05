@@ -3,14 +3,15 @@ package com.tracker.service;
 import com.tracker.model.User;
 import com.tracker.model.UserPrinciple;
 import com.tracker.reop.RepoUser;
-import com.tracker.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
     @Service
@@ -19,17 +20,6 @@ import java.util.Optional;
         @Autowired
         RepoUser repo;
 
-        @Autowired
-        private OtpService otpService;
-
-        @Autowired
-        private MailService mailService;
-
-        private static String messageForOtp= """
-                                    This is bug tracking system
-                                    this otp is valid for 2 minutes
-                                    
-                                    """;
         @Override
         public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -42,7 +32,8 @@ import java.util.Optional;
         }
 
         public User addUser(User user) {
-            user.setCreatedAt(new Date(System.currentTimeMillis()));
+            user.setCreatedAt(LocalDateTime.now());
+            user.setIsVerified(false);
             User u= repo.save(user) ;
             return u;
         }
@@ -52,29 +43,73 @@ import java.util.Optional;
             return u.isPresent();
         }
 
-        public Response sendOtp(User user) {
-            String otp=otpService.generateOtp(user.getEmail());
-
-            String message=messageForOtp+otp;
-            boolean b=mailService.sendMail(user.getEmail(), message);
-
-            Response response=new Response();
-
-            if(b){
-                response.setDone(true);
-                response.setMessage("message is successfully sent");
-            }else{
-               response.setDone(false);
-                response.setMessage("could not send the message");
-
-            }
-
-            return response;
-        }
-
         public User findByUsername(String s) {
 
             return repo.findByName(s);
+        }
+
+        public User findByUserById(int id) throws Exception {
+          return  repo.findById(id).orElseThrow(()-> new Exception("user not found"));
+        }
+
+        public List<User> getAllUser() {
+
+            return repo.findAll();
+        }
+
+        public User update(int id,User u) {
+            Optional<User> OptionalUser=repo.findById(id);
+
+            if(OptionalUser.isPresent()){
+                User user=OptionalUser.get();
+                if(u.getName()!=null)
+                    user.setName(u.getName());
+
+                if(u.getPassword()!=null)
+                    user.setPassword(u.getPassword());
+
+                repo.save(user);
+
+                return user;
+            }
+
+            return null;
+        }
+
+        public void delete(int id) {
+            repo.deleteById(id);
+        }
+
+        public boolean findByEmail(String email) {
+           Optional<User> u= repo.findByEmail(email);
+            return u.isPresent();
+        }
+
+        public Boolean verifyUser(String email) {
+
+            Optional<User> OpUser=repo.findByEmail(email);
+
+            if(OpUser.isPresent()){
+                User u=OpUser.get();
+                u.setIsVerified(true);
+                repo.save(u);
+                return true;
+            }
+            return false;
+        }
+
+        public void deleteByEmail(String Email){
+            repo.deleteByEmail(Email);
+        }
+
+        public void deleteIfNotVerified(String email) {
+            Optional<User> u= repo.findByEmail(email);
+            if(u.isPresent()){
+                User user=u.get();
+                if(!user.getIsVerified()){
+                    deleteByEmail(email);
+                }
+            }
         }
     }
 

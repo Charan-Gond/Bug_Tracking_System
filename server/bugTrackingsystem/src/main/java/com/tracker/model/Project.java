@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 
 @Data
@@ -27,7 +28,7 @@ public class Project {
     private int createdBy;
 
     @Column(name ="created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
 
 }

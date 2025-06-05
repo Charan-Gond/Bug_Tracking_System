@@ -11,8 +11,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
-    @Data
+@Data
     @AllArgsConstructor
     @NoArgsConstructor
     @Entity
@@ -32,5 +33,8 @@ import java.sql.Date;
         private Role role=Role.DEVELOPER;
 
         @Column(name="created_at")
-        private Date createdAt;
+        private LocalDateTime createdAt;
+
+        @Column(name="is_verified")
+        private Boolean isVerified;
 }

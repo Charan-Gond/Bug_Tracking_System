@@ -3,14 +3,12 @@ package com.tracker.model;
 
 import com.tracker.domain.Priority;
 import com.tracker.domain.Status;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 
 @Data
@@ -20,6 +18,7 @@ import java.sql.Date;
 public class Bugs {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String title;
@@ -30,6 +29,9 @@ public class Bugs {
 
     private Priority priority=Priority.MEDIUM;
 
+    @Column(name="project_id")
+    private int projectId;
+
     @Column(name="assigned_to")
     private int assignedTo;
 
@@ -37,10 +39,10 @@ public class Bugs {
     private int reportedBy;
 
     @Column(name="created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name="updated_at")
-    private Date updatedAt;
+    private LocalDateTime updatedAt;
 
 
 

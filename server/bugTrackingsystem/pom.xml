@@ -92,28 +92,12 @@
 			<scope>runtime</scope>
 		</dependency>
 
-<!--		&lt;!&ndash; https://mvnrepository.com/artifact/io.github.cdimascio/java-dotenv &ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>io.github.cdimascio</groupId>-->
-<!--			<artifactId>java-dotenv</artifactId>-->
-<!--			<version>5.2.2</version>-->
-<!--		</dependency>-->
-
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 			<version>3.4.1</version>
 		</dependency>
-
-
-		<dependency>
-			<groupId>io.github.cdimascio</groupId>
-			<artifactId>java-dotenv</artifactId>
-			<version>5.2.2</version>
-		</dependency>
-
-
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>

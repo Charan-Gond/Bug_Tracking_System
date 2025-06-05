@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -26,15 +27,16 @@ public class History {
     @Column(name="updated_by")
     private int updatedBy;
 
+    private String comment;
+
     @Column(name="old_status")
     private Status oldStatus;
 
     @Column(name="new_status")
     private Status newStatus;
-
-
+    
     @Column(name = "changed_at")
-    private Date changedAt;
+    private LocalDateTime changedAt;
 
 
 }

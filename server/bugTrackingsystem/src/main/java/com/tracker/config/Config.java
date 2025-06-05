@@ -36,7 +36,8 @@ public class Config {
     public SecurityFilterChain con(HttpSecurity http) throws Exception {
         http.csrf(x-> x.disable())
                 .authorizeHttpRequests(x->
-                        x.requestMatchers("register","login").permitAll()
+                        x.requestMatchers("/api/user/register","/api/user/login",
+                                        "/api/otp/send","/api/otp/verify").permitAll()
                                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(x->

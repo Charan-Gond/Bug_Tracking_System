@@ -15,7 +15,7 @@ public class MailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public boolean sendMail(String email,String message){
+    public boolean sendMail(String email,String message) throws Exception {
 
        try {
         MimeMessage mimeMessage=javaMailSender.createMimeMessage();
@@ -28,8 +28,7 @@ public class MailService {
          javaMailSender.send(mimeMessage);
 
         }catch(MailException | MessagingException e){
-           e.printStackTrace();
-            return false;
+            throw new Exception(e.getMessage());
         }
 
        return  true;
