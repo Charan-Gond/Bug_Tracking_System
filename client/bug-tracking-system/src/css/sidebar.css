@@ -1,0 +1,24 @@
+.sidebar {
+  width: 250px;
+  background-color: #f7fafc;
+  height: 100vh;
+  padding: 2rem;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar h2 {
+  color: #2b6cb0;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.sidebar nav a {
+  display: block;
+  color: #4a5568;
+  margin-bottom: 1rem;
+  text-decoration: none;
+}
+
+.sidebar nav a:hover {
+  color: #2b6cb0;
+}
